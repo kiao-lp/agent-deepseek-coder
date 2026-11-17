@@ -21,3 +21,33 @@ command = "kiao-mcp-units"
 args = []
 
 [mcp_servers.kiao-units.env]
+
+[mcp_servers.duckduckgo]
+command = "uvx"
+args = ["--from", "duckduckgo-mcp-server==0.6.1", "duckduckgo-mcp-server"]
+
+[mcp_servers.duckduckgo.env]
+
+[mcp_servers.fetch]
+command = "uvx"
+args = ["--with", "mcp<2", "--from", "mcp-server-fetch==2026.8.18", "mcp-server-fetch"]
+
+[mcp_servers.fetch.env]
+
+[mcp_servers.markitdown]
+command = "uvx"
+args = ["--from", "markitdown-mcp==0.0.1a4", "markitdown-mcp"]
+
+[mcp_servers.markitdown.env]
+
+[mcp_servers.papers]
+command = "uvx"
+args = ["--from", "paper-search-mcp==0.1.4", "paper-search-mcp"]
+
+[mcp_servers.papers.env]
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["--yes", "@playwright/mcp@0.0.79", "--headless", "--isolated", "--browser", "chromium"]
+
+[mcp_servers.playwright.env]

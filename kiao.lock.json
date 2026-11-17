@@ -1,6 +1,42 @@
 {
   "resources": [
     {
+      "name": "mcp-cv",
+      "commit": "ed5be06fa1e7112852eb91641bd6a56a004da15e"
+    },
+    {
+      "name": "mcp-duckduckgo",
+      "commit": "9e3dd046cb6d952ace2dd791f8214361a9067343"
+    },
+    {
+      "name": "mcp-fetch",
+      "commit": "84bce795105aed58decdaae297bf3ed550c8a1d2"
+    },
+    {
+      "name": "mcp-files",
+      "commit": "41ba06152a0eab4d88dd8b76a28e117356acbfab"
+    },
+    {
+      "name": "mcp-hybridflow",
+      "commit": "43b9b0da780a0e9a8aaeee17cfcc7f8ae00257a2"
+    },
+    {
+      "name": "mcp-markitdown",
+      "commit": "0e001ca4c9bed786fc869a00f0270745e00419db"
+    },
+    {
+      "name": "mcp-papers",
+      "commit": "fde78eb8019d93d82f76f7cc584135e9b18ab756"
+    },
+    {
+      "name": "mcp-playwright",
+      "commit": "c2eb054f84253c2768ea17016d9a0ba35197d2dc"
+    },
+    {
+      "name": "mcp-units",
+      "commit": "74a6a9c3f11bd636198d84e28677baef17b0eb2e"
+    },
+    {
       "name": "skill-actlog",
       "commit": "afc018fdb84822ae963a00dfd199c8db67541f4a"
     },
@@ -18,11 +54,15 @@
     },
     {
       "name": "skill-hybridflow",
-      "commit": "bc4ad81d070a4840d420cb2593896bbc358686cb"
+      "commit": "8002795af0a920040fb3adc5fa070ae2e616fb15"
     },
     {
       "name": "skill-kiao-adr",
       "commit": "c0a6314bcabc53ef4f1c29999231a014db1a8361"
+    },
+    {
+      "name": "skill-learning-module",
+      "commit": "23b9278799f444dec0e6e636d96d56998aff5620"
     },
     {
       "name": "skill-markdown-anchors",
@@ -41,36 +81,16 @@
       "commit": "a6437ce1402f1804b2a537db9896889910d07e74"
     },
     {
+      "name": "skill-mlunit",
+      "commit": "5b82d9d86bffff86569f45c43982853537213d92"
+    },
+    {
       "name": "skill-strategy",
       "commit": "9d8d7fe28211379d32bb43da03f8ffce20fdf9cc"
     },
     {
       "name": "skill-template-lang",
       "commit": "0187515945a2379e95fac8c8b3bfbb6db562e182"
-    },
-    {
-      "name": "mcp-files",
-      "commit": "41ba06152a0eab4d88dd8b76a28e117356acbfab"
-    },
-    {
-      "name": "mcp-hybridflow",
-      "commit": "43b9b0da780a0e9a8aaeee17cfcc7f8ae00257a2"
-    },
-    {
-      "name": "skill-learning-module",
-      "commit": "23b9278799f444dec0e6e636d96d56998aff5620"
-    },
-    {
-      "name": "skill-mlunit",
-      "commit": "5b82d9d86bffff86569f45c43982853537213d92"
-    },
-    {
-      "name": "mcp-cv",
-      "commit": "ed5be06fa1e7112852eb91641bd6a56a004da15e"
-    },
-    {
-      "name": "mcp-units",
-      "commit": "74a6a9c3f11bd636198d84e28677baef17b0eb2e"
     }
   ]
 }

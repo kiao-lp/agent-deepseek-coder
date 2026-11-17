@@ -1,5 +1,14 @@
 dependencies:
     apm:
+        - path: ./.apm/resources/mcp-cv
+        - path: ./.apm/resources/mcp-duckduckgo
+        - path: ./.apm/resources/mcp-fetch
+        - path: ./.apm/resources/mcp-files
+        - path: ./.apm/resources/mcp-hybridflow
+        - path: ./.apm/resources/mcp-markitdown
+        - path: ./.apm/resources/mcp-papers
+        - path: ./.apm/resources/mcp-playwright
+        - path: ./.apm/resources/mcp-units
         - alias: actlog
           path: ./.apm/resources/skill-actlog
         - alias: archdia
@@ -12,6 +21,8 @@ dependencies:
           path: ./.apm/resources/skill-hybridflow
         - alias: kiao-adr
           path: ./.apm/resources/skill-kiao-adr
+        - alias: learning-module
+          path: ./.apm/resources/skill-learning-module
         - alias: markdown-anchors
           path: ./.apm/resources/skill-markdown-anchors
         - alias: markdown-metadata
@@ -20,18 +31,12 @@ dependencies:
           path: ./.apm/resources/skill-markdown-passage-link
         - alias: mindmap
           path: ./.apm/resources/skill-mindmap
+        - alias: mlunit
+          path: ./.apm/resources/skill-mlunit
         - alias: strategy
           path: ./.apm/resources/skill-strategy
         - alias: template-lang
           path: ./.apm/resources/skill-template-lang
-        - path: ./.apm/resources/mcp-files
-        - path: ./.apm/resources/mcp-hybridflow
-        - alias: learning-module
-          path: ./.apm/resources/skill-learning-module
-        - alias: mlunit
-          path: ./.apm/resources/skill-mlunit
-        - path: ./.apm/resources/mcp-cv
-        - path: ./.apm/resources/mcp-units
 description: Model for complex coding work. DeepSeek/Pi based.
 name: agent-deepseek-coder
 targets:

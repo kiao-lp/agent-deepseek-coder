@@ -19,6 +19,56 @@
       "type": "stdio",
       "command": "kiao-mcp-units",
       "args": []
+    },
+    "duckduckgo": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "duckduckgo-mcp-server==0.6.1",
+        "duckduckgo-mcp-server"
+      ]
+    },
+    "fetch": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--with",
+        "mcp<2",
+        "--from",
+        "mcp-server-fetch==2026.8.18",
+        "mcp-server-fetch"
+      ]
+    },
+    "markitdown": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "markitdown-mcp==0.0.1a4",
+        "markitdown-mcp"
+      ]
+    },
+    "papers": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "paper-search-mcp==0.1.4",
+        "paper-search-mcp"
+      ]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "--yes",
+        "@playwright/mcp@0.0.79",
+        "--headless",
+        "--isolated",
+        "--browser",
+        "chromium"
+      ]
     }
   }
 }
