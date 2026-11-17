@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "kiao-cv": {
+      "type": "stdio",
+      "command": "kiao-mcp-cv",
+      "args": []
+    },
+    "kiao-files": {
+      "type": "stdio",
+      "command": "kiao-mcp-files",
+      "args": []
+    },
+    "kiao-hybridflow": {
+      "type": "stdio",
+      "command": "kiao-mcp-hybridflow",
+      "args": []
+    },
+    "kiao-units": {
+      "type": "stdio",
+      "command": "kiao-mcp-units",
+      "args": []
+    }
+  }
+}

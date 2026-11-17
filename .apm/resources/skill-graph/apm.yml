@@ -1,0 +1,9 @@
+{
+  "name": "graph",
+  "version": "1.0.0",
+  "description": "graph skill",
+  "targets": [
+    "codex",
+    "claude"
+  ]
+}

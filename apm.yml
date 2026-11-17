@@ -1,12 +1,40 @@
-{
-  "name": "agent-deepseek-coder",
-  "version": "1.0.0",
-  "description": "Model for complex coding work. DeepSeek/Pi based.",
-  "targets": [
-    "codex",
-    "claude"
-  ],
-  "dependencies": {
-    "apm": []
-  }
-}
+dependencies:
+    apm:
+        - alias: actlog
+          path: ./.apm/resources/skill-actlog
+        - alias: archdia
+          path: ./.apm/resources/skill-archdia
+        - alias: featmat
+          path: ./.apm/resources/skill-featmat
+        - alias: graph
+          path: ./.apm/resources/skill-graph
+        - alias: hybridflow
+          path: ./.apm/resources/skill-hybridflow
+        - alias: kiao-adr
+          path: ./.apm/resources/skill-kiao-adr
+        - alias: markdown-anchors
+          path: ./.apm/resources/skill-markdown-anchors
+        - alias: markdown-metadata
+          path: ./.apm/resources/skill-markdown-metadata
+        - alias: markdown-passage-link
+          path: ./.apm/resources/skill-markdown-passage-link
+        - alias: mindmap
+          path: ./.apm/resources/skill-mindmap
+        - alias: strategy
+          path: ./.apm/resources/skill-strategy
+        - alias: template-lang
+          path: ./.apm/resources/skill-template-lang
+        - path: ./.apm/resources/mcp-files
+        - path: ./.apm/resources/mcp-hybridflow
+        - alias: learning-module
+          path: ./.apm/resources/skill-learning-module
+        - alias: mlunit
+          path: ./.apm/resources/skill-mlunit
+        - path: ./.apm/resources/mcp-cv
+        - path: ./.apm/resources/mcp-units
+description: Model for complex coding work. DeepSeek/Pi based.
+name: agent-deepseek-coder
+targets:
+    - codex
+    - claude
+version: 1.0.0

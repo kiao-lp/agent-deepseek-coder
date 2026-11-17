@@ -1,0 +1,76 @@
+{
+  "resources": [
+    {
+      "name": "skill-actlog",
+      "commit": "afc018fdb84822ae963a00dfd199c8db67541f4a"
+    },
+    {
+      "name": "skill-archdia",
+      "commit": "1fa104011f3ffb3dcbc11c8438758d3d3fb809cf"
+    },
+    {
+      "name": "skill-featmat",
+      "commit": "f3fe3bdecc436aa5ddc2173e90258b3cdd9a11a0"
+    },
+    {
+      "name": "skill-graph",
+      "commit": "a73c08b1582a4e956d9b1f951dcc4519bd2eae09"
+    },
+    {
+      "name": "skill-hybridflow",
+      "commit": "bc4ad81d070a4840d420cb2593896bbc358686cb"
+    },
+    {
+      "name": "skill-kiao-adr",
+      "commit": "c0a6314bcabc53ef4f1c29999231a014db1a8361"
+    },
+    {
+      "name": "skill-markdown-anchors",
+      "commit": "c948219e360d93f8af3ef97f09f811e0536007be"
+    },
+    {
+      "name": "skill-markdown-metadata",
+      "commit": "e4d0aaed9074a2984e622ecf3fe16a31511edfaf"
+    },
+    {
+      "name": "skill-markdown-passage-link",
+      "commit": "9024f974a59dcd794eb00ee603a8039fe0380e86"
+    },
+    {
+      "name": "skill-mindmap",
+      "commit": "a6437ce1402f1804b2a537db9896889910d07e74"
+    },
+    {
+      "name": "skill-strategy",
+      "commit": "9d8d7fe28211379d32bb43da03f8ffce20fdf9cc"
+    },
+    {
+      "name": "skill-template-lang",
+      "commit": "0187515945a2379e95fac8c8b3bfbb6db562e182"
+    },
+    {
+      "name": "mcp-files",
+      "commit": "41ba06152a0eab4d88dd8b76a28e117356acbfab"
+    },
+    {
+      "name": "mcp-hybridflow",
+      "commit": "203470f0e27414684ff155a8a50255e7d76b7d9e"
+    },
+    {
+      "name": "skill-learning-module",
+      "commit": "23b9278799f444dec0e6e636d96d56998aff5620"
+    },
+    {
+      "name": "skill-mlunit",
+      "commit": "5b82d9d86bffff86569f45c43982853537213d92"
+    },
+    {
+      "name": "mcp-cv",
+      "commit": "ed5be06fa1e7112852eb91641bd6a56a004da15e"
+    },
+    {
+      "name": "mcp-units",
+      "commit": "74a6a9c3f11bd636198d84e28677baef17b0eb2e"
+    }
+  ]
+}
