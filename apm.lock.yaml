@@ -444,13 +444,13 @@ dependencies:
 deployments:
 - kind: project-relative
   target: claude
-  value: .claude/rules/agent.md
+  value: .claude/agents/agent-deepseek-coder.md
   runtime: null
   scope: project
   owners:
   - .
   active_owner: .
-  content_hash: sha256:806a15b997fd260f117bc21cdfd541a844e06bc691bc9b752ffd0a4701cda660
+  content_hash: sha256:447b2d5ad121fafcc8bd3d119039cd0dcf21a7928696455ccb4f78c513d41891
 - kind: project-relative
   target: claude
   value: .claude/skills/actlog
@@ -1801,6 +1801,15 @@ deployments:
   - ./.apm/resources/skill-template-lang
   active_owner: ./.apm/resources/skill-template-lang
   content_hash: sha256:fee4698417148d65cb7034495ed32b5cf856ad52a16c63bd2dbf82bf1ce641c4
+- kind: project-relative
+  target: codex
+  value: .codex/agents/agent-deepseek-coder.toml
+  runtime: null
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: sha256:31d7a0f1faf734eeb429862574cc1b0429dd12ffb6681114a1a864888f8a8de0
 - kind: uri
   target: mcp
   value: kiao-cv
@@ -1916,6 +1925,8 @@ mcp_config_provenance:
   kiao-hybridflow: mcp-hybridflow
   kiao-units: mcp-units
 local_deployed_files:
-- .claude/rules/agent.md
+- .claude/agents/agent-deepseek-coder.md
+- .codex/agents/agent-deepseek-coder.toml
 local_deployed_file_hashes:
-  .claude/rules/agent.md: sha256:806a15b997fd260f117bc21cdfd541a844e06bc691bc9b752ffd0a4701cda660
+  .claude/agents/agent-deepseek-coder.md: sha256:447b2d5ad121fafcc8bd3d119039cd0dcf21a7928696455ccb4f78c513d41891
+  .codex/agents/agent-deepseek-coder.toml: sha256:31d7a0f1faf734eeb429862574cc1b0429dd12ffb6681114a1a864888f8a8de0
