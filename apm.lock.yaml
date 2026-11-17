@@ -17,11 +17,11 @@ dependencies:
   content_hash: sha256:b73cb1303a8f2a55a76af42e7941064ed7318137e79dbe26950ed663a04c3add
 - repo_url: _local/mcp-hybridflow
   name: mcp-hybridflow
-  version: 1.0.0
+  version: 1.0.1
   package_type: apm_package
   source: local
   local_path: ./.apm/resources/mcp-hybridflow
-  content_hash: sha256:93447e4064a62feceeb7d2007cc935dd0e012f13622574df24650e3911c47fb0
+  content_hash: sha256:948bb7002cdd819aa851639faa6faee60805c4e478b3a345b71075d5dbe8f925
 - repo_url: _local/mcp-units
   name: mcp-units
   version: 1.0.0
