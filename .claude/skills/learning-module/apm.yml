@@ -1,9 +1,0 @@
-{
-  "name": "learning-module",
-  "version": "1.0.0",
-  "description": "learning-module skill",
-  "targets": [
-    "codex",
-    "claude"
-  ]
-}

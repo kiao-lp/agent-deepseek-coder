@@ -10,36 +10,36 @@ dependencies:
         - path: ./.apm/resources/mcp-playwright
         - path: ./.apm/resources/mcp-units
         - alias: actlog
-          path: ./.apm/resources/skill-actlog
+          git: git@github.com:kiao-lp/skill-actlog.git
         - alias: archdia
-          path: ./.apm/resources/skill-archdia
+          git: git@github.com:kiao-lp/skill-archdia.git
         - alias: featmat
-          path: ./.apm/resources/skill-featmat
+          git: git@github.com:kiao-lp/skill-featmat.git
         - alias: graph
-          path: ./.apm/resources/skill-graph
+          git: git@github.com:kiao-lp/skill-graph.git
         - alias: hybridflow
-          path: ./.apm/resources/skill-hybridflow
+          git: git@github.com:kiao-lp/skill-hybridflow.git
         - alias: kiao-adr
-          path: ./.apm/resources/skill-kiao-adr
+          git: git@github.com:kiao-lp/skill-kiao-adr.git
         - alias: learning-module
-          path: ./.apm/resources/skill-learning-module
+          git: git@github.com:kiao-lp/skill-learning-module.git
         - alias: markdown-anchors
-          path: ./.apm/resources/skill-markdown-anchors
+          git: git@github.com:kiao-lp/skill-markdown-anchors.git
         - alias: markdown-metadata
-          path: ./.apm/resources/skill-markdown-metadata
+          git: git@github.com:kiao-lp/skill-markdown-metadata.git
         - alias: markdown-passage-link
-          path: ./.apm/resources/skill-markdown-passage-link
+          git: git@github.com:kiao-lp/skill-markdown-passage-link.git
         - alias: mindmap
-          path: ./.apm/resources/skill-mindmap
+          git: git@github.com:kiao-lp/skill-mindmap.git
         - alias: mlunit
-          path: ./.apm/resources/skill-mlunit
+          git: git@github.com:kiao-lp/skill-mlunit.git
         - alias: strategy
-          path: ./.apm/resources/skill-strategy
+          git: git@github.com:kiao-lp/skill-strategy.git
         - alias: template-lang
-          path: ./.apm/resources/skill-template-lang
+          git: git@github.com:kiao-lp/skill-template-lang.git
 description: Model for complex coding work. DeepSeek/Pi based.
 name: agent-deepseek-coder
 targets:
     - codex
     - claude
-version: 1.0.0
+version: 1.0.1

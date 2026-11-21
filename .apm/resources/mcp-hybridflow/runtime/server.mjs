@@ -21535,8 +21535,8 @@ var WorkerClient = class _WorkerClient {
       request
     );
   }
-  listAgents(includeArchived = false) {
-    return this.boardsJson("GET", `/hybridflow-runner/agents${includeArchived ? "?archived=true" : ""}`);
+  listAgents() {
+    return this.boardsJson("GET", "/hybridflow-runner/agents");
   }
   createAgent(agent) {
     return this.boardsJson("POST", "/hybridflow-runner/agents", agent);
@@ -21552,11 +21552,25 @@ var WorkerClient = class _WorkerClient {
       _WorkerClient.ifMatch(ifMatch)
     );
   }
-  deleteAgent(id) {
-    return this.boardsVoid("DELETE", `/hybridflow-runner/agents/${encodeURIComponent(id)}`);
+  agentDeletionStatus(id) {
+    return this.boardsJson("GET", `/hybridflow-runner/agents/${encodeURIComponent(id)}/deletion`);
   }
-  publishAgent(id, ifMatch) {
-    return this.boardsJson("POST", `/hybridflow-runner/agents/${encodeURIComponent(id)}/publish`, {}, _WorkerClient.ifMatch(ifMatch));
+  deleteAgent(id, confirmation) {
+    return this.boardsVoid("DELETE", `/hybridflow-runner/agents/${encodeURIComponent(id)}?confirmation=${encodeURIComponent(confirmation)}`);
+  }
+  async publishAgent(id, ifMatch, confirmation) {
+    const path = `/hybridflow-runner/agents/${encodeURIComponent(id)}/publish`;
+    const response = await this.req(path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", ..._WorkerClient.ifMatch(ifMatch) },
+      body: JSON.stringify({ confirmation })
+    });
+    if (response.status === 409) {
+      const result = await response.clone().json().catch(() => null);
+      if (result?.pushConfirmation?.token) return result;
+    }
+    if (!response.ok) throw new WorkerError(await boardsFailure(path, response), response.status, response.statusText);
+    return response.json();
   }
   agentVersions(id) {
     return this.boardsJson("GET", `/hybridflow-runner/agents/${encodeURIComponent(id)}/versions`);
@@ -22089,9 +22103,10 @@ function registerHybridflowTools(server, hybridflow) {
       handle: HANDLE,
       id: external_exports.string().describe("Source workflow class id from workflow_class_list."),
       spot: SPOT.optional(),
-      bodies: BODIES
+      bodies: BODIES,
+      agents: external_exports.record(external_exports.string(), AGENT_ID).optional().describe("Explicit task agent IDs keyed by source class ID.")
     }
-  }, guard(async ({ handle, id, spot, bodies }) => ok(await hybridflow.instantiateWorkflowClass(handle, id, { spot, bodies }))));
+  }, guard(async ({ handle, id, spot, bodies, agents }) => ok(await hybridflow.instantiateWorkflowClass(handle, id, { spot, bodies, agents }))));
   server.registerTool("class_list", {
     description: "List node classes across boards; use class_get for versions.",
     inputSchema: {}
@@ -22107,7 +22122,6 @@ function registerHybridflowTools(server, hybridflow) {
       body: external_exports.string().optional().describe("First version description."),
       criteria: CRITERIA.optional(),
       template: external_exports.boolean().optional().describe("First version is a fill-in template."),
-      agent: external_exports.string().optional().describe("First version default managed agent id (AI)."),
       at: AT.optional(),
       duration: DURATION.optional(),
       spot: SPOT.optional(),
@@ -22169,10 +22183,9 @@ function registerHybridflowTools(server, hybridflow) {
       body: external_exports.string().optional().describe("The description."),
       criteria: CRITERIA.optional(),
       template: external_exports.boolean().optional().describe("Fill body during instantiation."),
-      agent: external_exports.string().optional().describe("Default managed agent id (AI)."),
       from: external_exports.string().optional().describe("Source version id; omit for a blank draft.")
     }
-  }, guard(async ({ handle, id, body, criteria, template, agent, from }) => ok(await hybridflow.createClassVersion(handle, id, { body, criteria, template, agent, from }))));
+  }, guard(async ({ handle, id, body, criteria, template, from }) => ok(await hybridflow.createClassVersion(handle, id, { body, criteria, template, from }))));
   server.registerTool("class_patch_version", {
     description: "Patch or publish a draft version. Published versions are immutable.",
     inputSchema: {
@@ -22183,7 +22196,6 @@ function registerHybridflowTools(server, hybridflow) {
         body: external_exports.string().optional().describe("New description."),
         criteria: CRITERIA.optional(),
         template: external_exports.boolean().optional().describe("Fill body during instantiation."),
-        agent: external_exports.string().optional().describe("The default agent."),
         status: external_exports.enum(["draft", "published"]).optional().describe("Publish the version.")
       }).strict().describe("The fields to change."),
       ifMatch: IF_MATCH
@@ -22199,35 +22211,36 @@ function registerHybridflowTools(server, hybridflow) {
       handle: HANDLE,
       id: CLASS_ID,
       spot: SPOT.optional(),
-      bodies: BODIES
+      bodies: BODIES,
+      agents: external_exports.record(external_exports.string(), AGENT_ID).optional().describe("Explicit task agent IDs keyed by source class ID.")
     }
-  }, guard(async ({ handle, id, spot, bodies }) => ok(await hybridflow.instantiateFlowNodeClass(handle, id, { spot, bodies }))));
+  }, guard(async ({ handle, id, spot, bodies, agents }) => ok(await hybridflow.instantiateFlowNodeClass(handle, id, { spot, bodies, agents }))));
   server.registerTool("agent_list", {
-    description: "List active managed agents with drafts and latest publications. Select using the published description.",
-    inputSchema: { archived: external_exports.boolean().optional().describe("Include archived agents.") }
-  }, guard(async ({ archived }) => ok(await hybridflow.listAgents(archived))));
+    description: "List installed agent repositories and latest publications. Select using the published description.",
+    inputSchema: {}
+  }, guard(async () => ok(await hybridflow.listAgents())));
   server.registerTool("agent_create", {
-    description: "Create an unpublished agent draft. Configuration and publication: hybridflow references/execution/agents.md.",
+    description: "Clone an agent Git repository or create a local agent. See hybridflow references/execution/agents.md.",
     inputSchema: {
-      name: external_exports.string().describe("Unique agent name."),
-      harness: external_exports.enum(["claude", "codex", "muse", "pi"]).describe("Agent harness."),
+      repository: external_exports.string().optional().describe("Git repository URL; empty creates a local repository."),
+      name: external_exports.string().optional().describe("Required for a new local agent."),
+      harness: external_exports.enum(["claude", "codex", "muse", "pi"]).optional().describe("Required for a new local agent."),
       profileId: external_exports.string().optional().describe("Runner execution profile id; see the agents reference."),
       model: external_exports.string().optional().describe("Model id. Required before native-agent publication."),
       effort: external_exports.string().optional().describe("Default effort. Required before native-agent publication."),
       instructions: external_exports.string().optional().describe("Standing instructions sent to turns."),
       description: external_exports.string().optional().describe("Selection guidance; not sent to turns.")
     }
-  }, guard(async ({ name, harness, profileId, model, effort, description, instructions }) => ok(await hybridflow.createAgent({ name, harness, profileId, model, effort, description, instructions }))));
+  }, guard(async ({ repository, name, harness, profileId, model, effort, description, instructions }) => ok(await hybridflow.createAgent({ repository, name, harness, profileId, model, effort, description, instructions }))));
   server.registerTool("agent_get", {
     description: "Read one managed agent.",
     inputSchema: { id: AGENT_ID }
   }, guard(async ({ id }) => ok(await hybridflow.getAgent(id))));
   server.registerTool("agent_patch", {
-    description: "Patch an agent draft or archive flag. Publish configuration changes explicitly with agent_publish.",
+    description: "Edit an agent working tree. Publish configuration changes with agent_publish.",
     inputSchema: {
       id: AGENT_ID,
       patch: external_exports.object({
-        archived: external_exports.boolean().optional().describe("Archive or restore the agent."),
         name: external_exports.string().optional().describe("New unique name."),
         harness: external_exports.enum(["claude", "codex", "muse", "pi"]).optional().describe("New engine."),
         profileId: external_exports.string().optional().describe("New execution profile reference."),
@@ -22240,17 +22253,21 @@ function registerHybridflowTools(server, hybridflow) {
     }
   }, guard(async ({ id, patch, ifMatch }) => ok(await hybridflow.patchAgent(id, patch, ifMatch))));
   server.registerTool("agent_publish", {
-    description: "Publish the agent draft as an immutable numbered version for new conversations.",
-    inputSchema: { id: AGENT_ID, ifMatch: IF_MATCH }
-  }, guard(async ({ id, ifMatch }) => ok(await hybridflow.publishAgent(id, ifMatch))));
+    description: "Publish an agent release. If pushConfirmation is returned, present its dependencies to the owner before retrying.",
+    inputSchema: {
+      id: AGENT_ID,
+      ifMatch: IF_MATCH,
+      confirmation: external_exports.string().optional().describe("Push confirmation token, supplied after the owner accepts the warning.")
+    }
+  }, guard(async ({ id, ifMatch, confirmation }) => ok(await hybridflow.publishAgent(id, ifMatch, confirmation))));
   server.registerTool("agent_versions", {
-    description: "Read agent publications, oldest first, including archived agents.",
+    description: "Read Git agent publications, oldest first.",
     inputSchema: { id: AGENT_ID }
   }, guard(async ({ id }) => ok(await hybridflow.agentVersions(id))));
   server.registerTool("agent_delete", {
-    description: "Permanently delete an unpublished agent. Published agents must be archived.",
-    inputSchema: { id: AGENT_ID }
-  }, guard(async ({ id }) => ok(await hybridflow.deleteAgent(id))));
+    description: "Inspect clone deletion risks. Pass the returned confirmation only after the owner confirms deletion; task references are retained.",
+    inputSchema: { id: AGENT_ID, confirmation: external_exports.string().optional().describe("Fingerprint of the repository state the owner confirmed.") }
+  }, guard(async ({ id, confirmation }) => ok(await hybridflow.deleteAgent(id, confirmation))));
   server.registerTool("runner_list", {
     description: "List runner registrations and last-seen timestamps.",
     inputSchema: {}
@@ -22524,11 +22541,12 @@ var HybridflowApi = class _HybridflowApi {
     );
   }
   /** Every managed agent, by name. Read before naming one on a card. */
-  async listAgents(includeArchived = false) {
-    return this.files.listAgents(includeArchived);
+  async listAgents() {
+    return this.files.listAgents();
   }
   /** File a managed agent. The name must be free. */
   async createAgent(agent) {
+    if (agent.repository?.trim()) return this.files.createAgent({ repository: agent.repository.trim() });
     const name = agent.name?.trim();
     if (!name) throw new Error("An agent needs a name.");
     const harness = agent.harness?.trim();
@@ -22539,8 +22557,8 @@ var HybridflowApi = class _HybridflowApi {
   async getAgent(id) {
     return this.files.getAgent(_HybridflowApi.id(id, "Agent"));
   }
-  async publishAgent(id, ifMatch) {
-    return this.files.publishAgent(_HybridflowApi.id(id, "Agent"), ifMatch);
+  async publishAgent(id, ifMatch, confirmation) {
+    return this.files.publishAgent(_HybridflowApi.id(id, "Agent"), ifMatch, confirmation);
   }
   async agentVersions(id) {
     return this.files.agentVersions(_HybridflowApi.id(id, "Agent"));
@@ -22553,9 +22571,10 @@ var HybridflowApi = class _HybridflowApi {
     return this.files.patchAgent(_HybridflowApi.id(id, "Agent"), patch, ifMatch);
   }
   /** Delete a managed agent. The flow nodes naming it keep naming it until they name another. */
-  async deleteAgent(id) {
+  async deleteAgent(id, confirmation) {
     const trimmed = _HybridflowApi.id(id, "Agent");
-    await this.files.deleteAgent(trimmed);
+    if (!confirmation) return { id: trimmed, deletion: await this.files.agentDeletionStatus(trimmed) };
+    await this.files.deleteAgent(trimmed, confirmation);
     return { deleted: trimmed };
   }
   /** Every runner. */

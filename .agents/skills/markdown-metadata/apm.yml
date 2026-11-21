@@ -1,9 +1,0 @@
-{
-  "name": "markdown-metadata",
-  "version": "1.0.0",
-  "description": "markdown-metadata skill",
-  "targets": [
-    "codex",
-    "claude"
-  ]
-}

@@ -2,9 +2,7 @@
   "id": "ac2baac8-4383-4b51-b2d7-77bbbc7bd9e5",
   "name": "Coder DeepSeek",
   "harness": "pi",
-  "profileId": "",
-  "createdAt": "2026-10-19T15:06:55.314544+00:00",
-  "updatedAt": "2026-11-15T19:17:02.105999+00:00",
-  "revision": 1,
-  "archived": false
+  "createdAt": "2026-10-19T15:06:55.314544Z",
+  "updatedAt": "2026-11-21T06:04:56.62779607Z",
+  "revision": 2
 }

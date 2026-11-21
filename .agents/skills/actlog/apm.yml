@@ -1,9 +1,0 @@
-{
-  "name": "actlog",
-  "version": "1.0.0",
-  "description": "actlog skill",
-  "targets": [
-    "codex",
-    "claude"
-  ]
-}
