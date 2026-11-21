@@ -1,33 +1,9 @@
 {
   "mcpServers": {
-    "kiao-cv": {
-      "type": "stdio",
-      "command": "kiao-mcp-cv",
-      "args": []
-    },
-    "kiao-files": {
-      "type": "stdio",
-      "command": "kiao-mcp-files",
-      "args": []
-    },
     "kiao-hybridflow": {
       "type": "stdio",
       "command": "kiao-mcp-hybridflow",
       "args": []
-    },
-    "kiao-units": {
-      "type": "stdio",
-      "command": "kiao-mcp-units",
-      "args": []
-    },
-    "duckduckgo": {
-      "type": "stdio",
-      "command": "uvx",
-      "args": [
-        "--from",
-        "duckduckgo-mcp-server==0.6.1",
-        "duckduckgo-mcp-server"
-      ]
     },
     "fetch": {
       "type": "stdio",
@@ -47,15 +23,6 @@
         "--from",
         "markitdown-mcp==0.0.1a4",
         "markitdown-mcp"
-      ]
-    },
-    "papers": {
-      "type": "stdio",
-      "command": "uvx",
-      "args": [
-        "--from",
-        "paper-search-mcp==0.1.4",
-        "paper-search-mcp"
       ]
     },
     "playwright": {

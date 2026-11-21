@@ -1,32 +1,8 @@
-[mcp_servers.kiao-cv]
-command = "kiao-mcp-cv"
-args = []
-
-[mcp_servers.kiao-cv.env]
-
-[mcp_servers.kiao-files]
-command = "kiao-mcp-files"
-args = []
-
-[mcp_servers.kiao-files.env]
-
 [mcp_servers.kiao-hybridflow]
 command = "kiao-mcp-hybridflow"
 args = []
 
 [mcp_servers.kiao-hybridflow.env]
-
-[mcp_servers.kiao-units]
-command = "kiao-mcp-units"
-args = []
-
-[mcp_servers.kiao-units.env]
-
-[mcp_servers.duckduckgo]
-command = "uvx"
-args = ["--from", "duckduckgo-mcp-server==0.6.1", "duckduckgo-mcp-server"]
-
-[mcp_servers.duckduckgo.env]
 
 [mcp_servers.fetch]
 command = "uvx"
@@ -39,12 +15,6 @@ command = "uvx"
 args = ["--from", "markitdown-mcp==0.0.1a4", "markitdown-mcp"]
 
 [mcp_servers.markitdown.env]
-
-[mcp_servers.papers]
-command = "uvx"
-args = ["--from", "paper-search-mcp==0.1.4", "paper-search-mcp"]
-
-[mcp_servers.papers.env]
 
 [mcp_servers.playwright]
 command = "npx"

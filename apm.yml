@@ -1,30 +1,17 @@
 dependencies:
     apm:
-        - path: ./.apm/resources/mcp-cv
-        - path: ./.apm/resources/mcp-duckduckgo
         - path: ./.apm/resources/mcp-fetch
-        - path: ./.apm/resources/mcp-files
         - git: git@github.com:kiao-lp/mcp-hybridflow.git
           ref: v1.0.4
         - path: ./.apm/resources/mcp-markitdown
-        - path: ./.apm/resources/mcp-papers
         - path: ./.apm/resources/mcp-playwright
-        - path: ./.apm/resources/mcp-units
-        - alias: actlog
-          git: git@github.com:kiao-lp/skill-actlog.git
         - alias: archdia
           git: git@github.com:kiao-lp/skill-archdia.git
-        - alias: featmat
-          git: git@github.com:kiao-lp/skill-featmat.git
-        - alias: graph
-          git: git@github.com:kiao-lp/skill-graph.git
         - alias: hybridflow
           git: git@github.com:kiao-lp/skill-hybridflow.git
           ref: v1.0.4
         - alias: kiao-adr
           git: git@github.com:kiao-lp/skill-kiao-adr.git
-        - alias: learning-module
-          git: git@github.com:kiao-lp/skill-learning-module.git
         - alias: markdown-anchors
           git: git@github.com:kiao-lp/skill-markdown-anchors.git
         - alias: markdown-metadata
@@ -33,10 +20,6 @@ dependencies:
           git: git@github.com:kiao-lp/skill-markdown-passage-link.git
         - alias: mindmap
           git: git@github.com:kiao-lp/skill-mindmap.git
-        - alias: mlunit
-          git: git@github.com:kiao-lp/skill-mlunit.git
-        - alias: strategy
-          git: git@github.com:kiao-lp/skill-strategy.git
         - alias: template-lang
           git: git@github.com:kiao-lp/skill-template-lang.git
 description: Model for complex coding work. DeepSeek/Pi based.
@@ -44,4 +27,4 @@ name: agent-deepseek-coder
 targets:
     - codex
     - claude
-version: 1.0.2
+version: 1.0.3
