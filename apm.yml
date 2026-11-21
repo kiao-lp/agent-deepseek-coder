@@ -4,7 +4,8 @@ dependencies:
         - path: ./.apm/resources/mcp-duckduckgo
         - path: ./.apm/resources/mcp-fetch
         - path: ./.apm/resources/mcp-files
-        - path: ./.apm/resources/mcp-hybridflow
+        - git: git@github.com:kiao-lp/mcp-hybridflow.git
+          ref: v1.0.4
         - path: ./.apm/resources/mcp-markitdown
         - path: ./.apm/resources/mcp-papers
         - path: ./.apm/resources/mcp-playwright
@@ -19,6 +20,7 @@ dependencies:
           git: git@github.com:kiao-lp/skill-graph.git
         - alias: hybridflow
           git: git@github.com:kiao-lp/skill-hybridflow.git
+          ref: v1.0.4
         - alias: kiao-adr
           git: git@github.com:kiao-lp/skill-kiao-adr.git
         - alias: learning-module
@@ -42,4 +44,4 @@ name: agent-deepseek-coder
 targets:
     - codex
     - claude
-version: 1.0.1
+version: 1.0.2

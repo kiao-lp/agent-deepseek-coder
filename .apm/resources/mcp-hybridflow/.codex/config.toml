@@ -1,5 +1,0 @@
-[mcp_servers.kiao-hybridflow]
-command = "kiao-mcp-hybridflow"
-args = []
-
-[mcp_servers.kiao-hybridflow.env]

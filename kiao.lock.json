@@ -17,10 +17,6 @@
       "commit": "41ba06152a0eab4d88dd8b76a28e117356acbfab"
     },
     {
-      "name": "mcp-hybridflow",
-      "commit": "33ac8066024dd17cb9484721bb3d0f915b88c588"
-    },
-    {
       "name": "mcp-markitdown",
       "commit": "0e001ca4c9bed786fc869a00f0270745e00419db"
     },
